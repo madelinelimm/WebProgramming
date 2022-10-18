@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Search</title>
+        <link rel="stylesheet" href = "styles.css">
+    </head>
+    <body>
+        <div>
+            <img id = "mini-google-logo" src="google-logo.png" alt="google_logo">
+            <div style="float: right;"><button class="pagebuttons"><a href="index.html">Back to Google</a></button></div>
+        </div>
+        </b><h2>Advanced Search</h2>
+        <hr size = "1" color="lightgrey">
+        <br>
+        <form action="https://google.com/search">
+        <table>
+            <tr>
+                <td style="font-size: 18px;">Find pages with... </td>
+                <td></td>
+                <td style="color: grey; font-size: 13px;"><b>To do this in the search box</b></td>
+            </tr>
+            <tr>
+                <td class="main_description">all these words:</td>
+                <td><input type="text" name="as_q" class="Ad_searchbar"></td>
+                <td class="description">Type the important words: <span class="second_font">tri-colour rat terrier</span></td>
+            </tr>
+            <tr>
+                <td class="main_description">this exact word or phrase:</td>
+                <td><input type="text" name="as_epq" class="Ad_searchbar"></td>
+                <td class="description">Put exact words in quotes: <span class="second_font">"rat terrier"</span></td>
+            </tr>
+            <tr>
+                <td class="main_description">any of these words:</td>
+                <td><input type="text" name="as_oq" class="Ad_searchbar"></td>
+                <td class="description">Type OR between all the words you want: <span class="second_font">miniature OR standard</span></td>
+            </tr>
+            <tr>
+                <td class="main_description">none of these words:</td>
+                <td><input type="text" name="as_eq" class="Ad_searchbar"></td>
+                <td class="description">Put a minus sign just before words that you don't want:
+                    <br><span class="second_font">-rodent, -"Jack Russell"</span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="text-align: right;"><input type="submit" value="Advanced Search" id="Ad_searchbutton"></td>
+            </tr>
+        </table>
+
+        </form>
+    </body>
+</html>
