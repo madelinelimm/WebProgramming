@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Auction items in your Watch List</h2>
+    {% if items %}
+        {% for auction in items %}
+            <div>  
+                <h3><a href = "{% url 'listing' item_name=auction.item_name %}" >{{ auction.item_name }}</a></h3>
+                {% if auction.item_URL %}
+                    <img src="{{ auction.item_URL }}" width = "300">
+                {% else %}
+                    No Image Provided for Item.
+                {% endif %}
+                <p>Description: {{ auction.item_description }}</p>
+                <h4> ${{auction.item_price}} </h4>
+                <div>
+                    <button><a href="{% url 'add_watchlist' item_name=auction.item_name%}">Remove from WatchList</a></button>
+                </div>
+                <br>
+            </div>
+        {% endfor %}
+    {% else %}
+        <br>
+        <h5>There is no items in your watch list</h5>
+    {% endif %}
+{% endblock %}

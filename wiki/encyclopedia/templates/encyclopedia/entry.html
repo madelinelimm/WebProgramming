@@ -1,0 +1,20 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ entrytitle }}
+{% endblock %}
+
+{% block body %}
+
+    <body>
+        {% if getentries != None %}
+           {{ getentries | safe}}
+           <button id="editbutton"><a href="{% url 'editpage' title=entrytitle %}">Edit</a></button>
+        {% else %}
+            <h1> Error: Request page does not exist!</h1>
+        {% endif %}
+
+        
+    </body>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% if message != None %}
+        <h2 style="color: blue;">{{ message }}</h2>
+    {% endif %}
+    <h1>Create New Listing</h1>
+    <form action="{% url 'createListing' %}" method="post">
+        {% csrf_token %}
+        <div >
+            {% for field in forms %}
+                <div> {{ field.label_tag }} {{ field }} </div>
+            {% endfor %}
+        </div>
+        <br>
+        <input type = "submit">
+    </form>
+{% endblock %}

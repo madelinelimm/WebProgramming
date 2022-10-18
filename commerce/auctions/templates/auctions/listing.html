@@ -1,0 +1,81 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div>
+        {% if message %}
+            <h3 style="color: blue;">{{ message }}</h3>
+        {% endif %}
+    </div>
+    <div>
+        <h2>{{ item.item_name }}</h2>
+        {% if item.item_URL %}
+            <img src="{{ item.item_URL }}" width = "300">
+        {% else %}
+            No Image Provided for Item.
+        {% endif %}
+        <p>Description: {{ item.item_description }}</p>
+        <h4> Initial Price: ${{item.item_price}} </h4>
+        
+        {% if highest_bid %}
+            <h4> Current Highest Bid: ${{highest_bid}} </h4>
+        {% else %}
+            <h4> Current Highest Bid: ${{item.item_price}} </h4>
+        {% endif %}
+
+        {% if user.is_authenticated %}
+                <div>
+                    <button><a href="{% url 'add_watchlist' item_name=item.item_name%}">WatchList</a></button>
+                </div>
+        {% endif %}
+
+        <br>
+    </div>
+    <div>
+        {% if user.is_authenticated %}
+            {% if item.item_exist %}
+                <h2> Submit a bidding here!</h2>
+                <form action="{% url 'bidding' item_name=item.item_name %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" id="bidding" name ="bidding" placeholder="Enter your bidding">
+                    <input type="submit">
+                </form>
+                <br>
+                {% if request.user == item.item_owner %}
+                    <button><a href="{% url 'close' item_name=item.item_name%}">Owner to Close this Bid</a></button>
+                    <br>
+                    <br>
+                {% endif %}
+
+
+            {% else %}
+                    {% if request.user == item.item_winner %}
+                        <h2 style="color: blue;"> Bidding for {{item.item_name}} has been closed. Congratulations, you are the winner! </h2>
+                    {% else %}
+                        <h2 style="color: blue;"> Bidding for {{item.item_name}} has been closed.</h2>
+                    {% endif %}
+                    <br>
+            {% endif %}
+            
+            <h2>Comments</h2>
+            {% if comments %}
+                {% for comment in comments %}
+                    <li>{{ comment.comment }}</li>
+                {% endfor %}
+            {% endif %}
+            <form action="{% url 'comment' item_name=item.item_name %}" method = "POST">
+                {% csrf_token %}
+                <input type = "text" id="item_comment" name="item_comment" placeholder="Enter your comments here" style="height:70px; width:900px;">
+                <br>
+                <input type="submit">
+            </form>
+
+
+
+        {% endif %}
+
+    </div>
+
+
+        
+
+{% endblock %}
